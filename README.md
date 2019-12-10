@@ -2,7 +2,7 @@
 
 #### 接入前准备
 请在 [移动](http://dev.10086.cn), [电信](https://id.189.cn/) , [联通](https://saas.wostore.cn/index.html) 运营商分别注册app信息以及开通一键登录功能。
-
+注册完毕请将各个运营商的appid以及appkey,填入MainActivity中，在build.gradle中添加打包信息
 
 #### 工程配置
 - 权限配置
@@ -103,7 +103,7 @@ public void getUserInfo(IGetUserInfoListener iGetUserInfoListener)
 public void closeAuthActivity()
 ```
 ##### 授权页自定义view相关（UIConfig）
-- 电信授权页添加自定义view需要添加以下xml文件
+电信授权页添加自定义view需要添加以下xml文件
 ```
 ctcc_customview1.xml
 ctcc_customview2.xml
