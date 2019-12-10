@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_corner">32dp</dimen>
+    <dimen name="ctcc_custom_offy">421dp</dimen>
+</resources>

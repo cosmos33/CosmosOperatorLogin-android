@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/ctcc_custom_offy"
+    android:layout_centerHorizontal="true"
+    android:paddingRight="100dp"
+    android:layout_width="wrap_content">
+
+    <ImageView
+        android:id="@+id/unicomWeiXinLogin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/login_weixin"
+        android:visibility="visible"/>
+
+</FrameLayout>

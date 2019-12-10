@@ -1,0 +1,7 @@
+<ImageView android:id="@+id/unicomQQLogin"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center_horizontal"
+    android:src="@drawable/login_qq"
+    android:visibility="visible"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

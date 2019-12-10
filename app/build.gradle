@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion project.extCompileSdkVersion
+    buildToolsVersion project.extBuildToolsVersion
+    defaultConfig {
+        applicationId "com.momo.cosmos_test"
+        minSdkVersion project.extMinSdkVersion
+        targetSdkVersion project.extTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            abiFilters "armeabi-v7a","arm64-v8a"
+        }
+    }
+    signingConfigs {
+        config {
+//            keyAlias ''//需要填入自己的keystore信息
+//            keyPassword ''//需要填入自己的keystore信息
+//            storeFile file('')//需要填入自己的keystore信息
+//            storePassword ''//需要填入自己的keystore信息
+            v2SigningEnabled true   // android 5.0-8.0，必须用V2，否则会有安全问题
+            v1SigningEnabled true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:support-compat:$appcompatVersion"
+
+    implementation "com.cosmos.auth:authlib:$demoauthversion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okVersion"
+}
+
+task getHomeDir {
+    doLast {
+        println gradle.gradleHomeDir
+    }
+}
