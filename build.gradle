@@ -34,7 +34,7 @@ allprojects {
         extTargetSdkVersion = 29
         appcompatVersion = "28.0.0"
 
-        demoauthversion = "1.0.7"
+        demoauthversion = "1.1.0"
     }
 }
 

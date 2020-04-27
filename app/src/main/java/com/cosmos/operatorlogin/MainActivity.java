@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
 import com.cosmos.authbase.AuthManagerConfig;
 import com.cosmos.authbase.IAuth;
 import com.cosmos.authbase.IOfferNumberListener;
@@ -61,6 +60,10 @@ public class MainActivity extends BaseActivity {
             requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_CODE);
             return;
         }
+        initAuth();
+    }
+
+    private void initAuth() {
         int returnType = AuthManager.getInstance().init(authManagerConfig);
         if (returnType == ISPType.TYPE_UNKNOW) {
             Toast.makeText(this, "初始化失败", Toast.LENGTH_SHORT).show();
@@ -156,8 +159,14 @@ public class MainActivity extends BaseActivity {
                 .privacyCheckDrawable(R.drawable.privacy_check_drawable)//电信需要这么设置
                 .privacyChecked(true)
                 .privacyOffYBottom(30)
-                .clauseContent("hahaha")
-                .clauseUrl("http://a.b.c")
+//                .clauseContent("自定义条款1")
+//                .clauseUrl("http://a.b.c")
+                .clauseContentTwo("自定义条款2")//移动联通支持第二个隐私条约
+                .clauseUrlTwo("http://a.b.c.2")//移动联通支持第二个隐私条约
+                .ctccClauseContent("电信独有协议")//电信支持
+                .ctccClauseUrl("http://123.456")//电信支持
+                .auxiliaryPrivacyWords(new String[]{"登录即同意", "和", "、", "并使用手机号登录"})
+                .clauseDefaultContent("这就是电信条款哈哈哈哈哈")//电信支持
                 .build();
 //        return new UIConfig.Builder().build() ;
     }
@@ -199,7 +208,7 @@ public class MainActivity extends BaseActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                AuthManager.getInstance().init(authManagerConfig);
+                initAuth();
             } else {
                 Toast.makeText(this, "没有权限", Toast.LENGTH_SHORT).show();
             }
@@ -208,10 +217,10 @@ public class MainActivity extends BaseActivity {
 
     public void onLoginClick(View view) {
         if (!offNum) {
-            Toast.makeText(this, "预取号还未成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "预取号未成功", Toast.LENGTH_SHORT).show();
             return;
         }
-        AuthManager.getInstance().openLoginAuth(new ITokenListener() {
+        AuthManager.getInstance().openLoginAuth(this, new ITokenListener() {
             @Override
             public void onTokenResult(String errorMsg) {
                 AuthManager.getInstance().closeAuthActivity();
