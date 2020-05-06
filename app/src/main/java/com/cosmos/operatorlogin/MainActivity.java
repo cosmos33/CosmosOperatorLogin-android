@@ -34,6 +34,8 @@ public class MainActivity extends BaseActivity {
     public static final String CTCC_APPID = "";  //请在天翼账号开放平台申请应用的APPID//（请在自己项目中替换该值）
     public static final String CTCC_APPSECRET = ""; //请在天翼账号开放平台申请应用的APPSECRET//（请在自己项目中替换该值）
 
+    private static final String COSMOS_APPID = "";//cosmos控制台appid
+
     private static final int REQUEST_CODE = 194;
     private AuthManagerConfig authManagerConfig;
     private boolean offNum;
@@ -48,6 +50,7 @@ public class MainActivity extends BaseActivity {
 
         authManagerConfig = new AuthManagerConfig.Builder()
                 .context(this)
+                .appId(COSMOS_APPID)
                 .cmccAppId(CMCC_APPID).cmccAppKey(CMCC_APP_KEY)
                 .ctccAppId(CTCC_APPID).ctccAppKey(CTCC_APPSECRET)
                 .cuccAppId(CUCC_APP_ID).cuccAppKey(CUCC_APP_KEY)
